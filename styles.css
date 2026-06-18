@@ -21,7 +21,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-.container { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+.container { width: min(1290px, calc(100% - 2rem)); margin: 0 auto; }
 .section { padding: 5.5rem 0; }
 .section-light { background: rgba(254,245,204,0.56); }
 .section-accent { background: linear-gradient(180deg, rgba(235,202,178,0.35), rgba(254,245,204,0.85)); }
