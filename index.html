@@ -19,6 +19,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </head>
   <body>
     <header class="topbar">
@@ -146,8 +152,8 @@
             <span class="eyebrow">Contact Us / Cart</span>
             <h2>Place your order</h2>
             <p>
-              Use the form to pre-order your next order. A message will be sent with all
-              order details to the business inbox.
+              Use the form to pre-order your next order. A message will be sent
+              with all order details to the business inbox.
             </p>
             <div class="order-card">
               <h3>Order Summary</h3>
@@ -311,21 +317,59 @@
                   ><input
                     type="radio"
                     name="payment_method"
-                    value="Venmo"
-                    required
-                  />
-                  <span>Venmo</span></label
-                >
-                <label class="radio-item"
-                  ><input
-                    type="radio"
-                    name="payment_method"
                     value="Cash"
                     required
                   />
                   <span>Cash</span></label
                 >
               </div>
+            </fieldset>
+
+            <div class="form-group full">
+              <label for="pickupDate"
+                >Pickup Date (Weekends Only) <span>*</span></label
+              >
+              <input
+                type="text"
+                id="pickupDate"
+                name="pickup_date"
+                placeholder="Select a weekend date"
+                required
+              />
+            </div>
+
+            <fieldset class="fieldset full">
+              <legend>Pickup Time <span>*</span></legend>
+
+              <label class="radio-item">
+                <input
+                  type="radio"
+                  name="pickup_time"
+                  value="Morning (8am–11am)"
+                  required
+                />
+                <span>Morning (8am–11am)</span>
+              </label>
+
+              <label class="radio-item">
+                <input
+                  type="radio"
+                  name="pickup_time"
+                  value="Afternoon (12pm–3pm)"
+                  required
+                />
+                <span>Afternoon (12pm–3pm)</span>
+              </label>
+
+              <label class="radio-item">
+                <input
+                  type="radio"
+                  name="pickup_time"
+                  value="Evening (4pm–6pm)"
+                  required
+                />
+                <span>Evening (4pm–6pm)</span>
+              </label>
             </fieldset>
 
             <div class="form-group full">

@@ -18,6 +18,9 @@ $payment_method = clean_input($_POST['payment_method'] ?? '');
 $special_requests = clean_input($_POST['special_requests'] ?? '');
 $order_total = clean_input($_POST['order_total'] ?? '$0');
 $order_items = $_POST['order_items'] ?? [];
+$pickup_date = clean_input($_POST['pickup_date'] ?? '');
+$formatted_date = date("l, F j, Y", strtotime($pickup_date));
+$pickup_time = clean_input($_POST['pickup_time'] ?? '');
 
 if (!is_array($order_items)) {
   $order_items = [];
@@ -25,7 +28,7 @@ if (!is_array($order_items)) {
 
 $order_items_clean = array_map('clean_input', $order_items);
 
-if ($full_name === '' || $phone_number === '' || $email_address === '' || $payment_method === '' || empty($order_items_clean)) {
+if ($full_name === '' || $phone_number === '' || $email_address === '' || $payment_method === '' || $pickup_date === '' || $pickup_time === '' || empty($order_items_clean)) {
   header('Location: index.html#order');
   exit;
 }
@@ -36,8 +39,11 @@ $body .= "Phone Number: {$phone_number}\n";
 $body .= "Email Address: {$email_address}\n\n";
 $body .= "Ordered Items:\n- " . implode("\n- ", $order_items_clean) . "\n\n";
 $body .= "Payment Method: {$payment_method}\n";
+$body .= "Pickup Date: {$formatted_date}\n";
+$body .= "Pickup Time: {$pickup_time}\n\n";
 $body .= "Order Total: {$order_total}\n\n";
 $body .= "Special Requests:\n" . ($special_requests !== '' ? $special_requests : 'None') . "\n";
+
 
 $headers = [];
 $headers[] = 'From: Sunday Crumb Sourdough Co <no-reply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . '>';
