@@ -1,13 +1,14 @@
+
 const orderCheckboxes = Array.from(
-  document.querySelectorAll('input[name="order_items[]"]'),
+  document.querySelectorAll('input[name="order_items[]"]')
 );
+
 const summaryEl = document.getElementById("orderSummary");
 const totalEl = document.getElementById("orderTotal");
 const totalInput = document.getElementById("orderTotalInput");
 const summaryInput = document.getElementById("orderItemsSummaryInput");
 const form = document.getElementById("orderForm");
 const pickupDateInput = document.getElementById("pickupDate");
-const pickupTime = document.querySelector('input[name="pickup_time"]:checked');
 
 function updateOrderSummary() {
   const selections = orderCheckboxes
@@ -27,6 +28,7 @@ function updateOrderSummary() {
       "<ul>" +
       selections.map((item) => `<li>${item.label}</li>`).join("") +
       "</ul>";
+
     summaryInput.value = selections.map((item) => item.label).join(", ");
   }
 
@@ -35,12 +37,30 @@ function updateOrderSummary() {
 }
 
 orderCheckboxes.forEach((box) =>
-  box.addEventListener("change", updateOrderSummary),
+  box.addEventListener("change", updateOrderSummary)
 );
+
 updateOrderSummary();
+
+flatpickr("#pickupDate", {
+  dateFormat: "Y-m-d",
+  altInput: true,
+  altFormat: "l, F j, Y",
+  minDate: "today",
+  maxDate: new Date().fp_incr(60),
+
+  disable: [
+    function (date) {
+      return date.getDay() !== 0 && date.getDay() !== 6;
+    },
+  ],
+});
 
 form.addEventListener("submit", function (e) {
   const checkedItems = orderCheckboxes.filter((box) => box.checked);
+  const selectedPickupTime = document.querySelector(
+    'input[name="pickup_time"]:checked'
+  );
 
   if (!checkedItems.length) {
     e.preventDefault();
@@ -54,24 +74,9 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
-  if (!pickupTime) {
+  if (!selectedPickupTime) {
     e.preventDefault();
     alert("Please select a pickup time.");
     return;
   }
-});
-
-flatpickr("#pickupDate", {
-  dateFormat: "l, F j, Y",
-
-  minDate: "today",
-
-  maxDate: new Date().fp_incr(60), // ~2 months
-
-  disable: [
-    function (date) {
-      // disable weekdays (Mon–Fri)
-      return date.getDay() !== 0 && date.getDay() !== 6;
-    },
-  ],
 });

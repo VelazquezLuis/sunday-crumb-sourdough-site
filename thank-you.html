@@ -42,13 +42,15 @@
           >
             Your order has been submitted!
           </h1>
+          <p
+            id="orderNumberMessage"
+            style="font-weight: 700; color: var(--brown)"
+          ></p>
           <p style="line-height: 1.75; font-size: 1.05rem">
             Thank you for contacting Sunday Crumb Sourdough Co. A confirmation
             email should be sent to the business inbox with your order details.
           </p>
-          <article class="menu-item">
-            <h3>Order number# 123456</h3>
-          </article>
+
           <div class="thankyou-social">
             <p>Follow our latest post</p>
 
@@ -69,5 +71,15 @@
         </div>
       </div>
     </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const orderNumber = params.get("order");
+
+      if (orderNumber) {
+        document.getElementById("orderNumberMessage").textContent =
+          `Your order number is #${orderNumber}`;
+      }
+    </script>
   </body>
 </html>
