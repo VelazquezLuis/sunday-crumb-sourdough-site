@@ -116,6 +116,51 @@ $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
 $mail_sent = @mail($to, $subject, $body, implode("\r\n", $headers));
 
+// CUSTOMER CONFIRMATION EMAIL
+
+$customer_subject = "Order Confirmation #{$order_number} - Sunday Crumb Sourdough Co";
+
+$customer_body = "
+Hi {$full_name},
+
+Thank you for your order from Sunday Crumb Sourdough Co! 🫶🏽
+
+Order Number: {$order_number}
+
+----------------------------------
+Order Summary
+----------------------------------
+
+Items:
+- " . implode("\n- ", $order_items_clean) . "
+
+Total: {$order_total}
+
+----------------------------------
+Pickup Details
+----------------------------------
+
+Date: {$formatted_date}
+Time: {$pickup_time}
+
+----------------------------------
+
+We will have your order ready for pickup at the selected time.
+Tip: Save this email or screenshot it for easy pickup reference.
+If you have any questions or need to make changes, feel free to reply to this email.
+
+Follow us on Instagram:
+https://www.instagram.com/sundaycrumbsourdoughco
+
+Thank you for supporting small-batch baking!
+
+— Sunday Crumb Sourdough Co
+";
+
+// Send email to customer
+@mail($email_address, $customer_subject, $customer_body, implode("\r\n", $headers));
+
+
 if ($mail_sent) {
   header('Location: thank-you.html?order=' . urlencode($order_number));
 } else {
