@@ -56,8 +56,10 @@ flatpickr("#pickupDate", {
   ],
 });
 
+
 form.addEventListener("submit", function (e) {
   const checkedItems = orderCheckboxes.filter((box) => box.checked);
+
   const selectedPickupTime = document.querySelector(
     'input[name="pickup_time"]:checked'
   );
@@ -80,3 +82,4 @@ form.addEventListener("submit", function (e) {
     return;
   }
 });
+
