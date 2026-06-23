@@ -83,3 +83,16 @@ form.addEventListener("submit", function (e) {
   }
 });
 
+
+const isAcceptingOrders = false;
+
+if (!isAcceptingOrders) {
+  const form = document.getElementById("orderForm");
+
+  form.style.opacity = "0.5";
+  form.style.pointerEvents = "none";
+
+  const banner = document.getElementById("announcementBanner");
+  banner.textContent =
+    "⚠️ We're currently not taking orders until further notice.";
+}
