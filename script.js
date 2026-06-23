@@ -84,7 +84,7 @@ form.addEventListener("submit", function (e) {
 });
 
 
-const isAcceptingOrders = false;
+const isAcceptingOrders = True;
 
 if (!isAcceptingOrders) {
   const form = document.getElementById("orderForm");
