@@ -123,6 +123,20 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-card img { border-radius: var(--radius); min-height: 330px; object-fit: cover; }
 
+.menu-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.menu-image:hover {
+  transform: scale(1.03);
+}
+
+
 @media (max-width: 1200px) {
   .hero-card img {
     object-fit: contain;
