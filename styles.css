@@ -137,6 +137,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 
+.order-error {
+  color: #a64b2a;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+
 @media (max-width: 1200px) {
   .hero-card img {
     object-fit: contain;
