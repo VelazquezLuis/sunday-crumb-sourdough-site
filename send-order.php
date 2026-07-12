@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -217,11 +222,7 @@ catch (Exception $e) {
     $pdo->rollBack();
   }
 
-  die(
-    '<pre>' .
-    $e->getMessage() .
-    '</pre>'
-  );
+  die('<pre>' . $e->getMessage() . '</pre>');
 }
 
 $subject = "New Order #{$order_number} - Sunday Crumb Sourdough Co";
