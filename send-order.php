@@ -212,13 +212,16 @@ try {
 
   $pdo->commit();
 
-} catch (Exception $e) {
+catch (Exception $e) {
   if ($pdo->inTransaction()) {
     $pdo->rollBack();
   }
 
-  header('Location: index.html?error=database#order');
-  exit;
+  die(
+    '<pre>' .
+    $e->getMessage() .
+    '</pre>'
+  );
 }
 
 $subject = "New Order #{$order_number} - Sunday Crumb Sourdough Co";
