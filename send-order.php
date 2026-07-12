@@ -205,7 +205,7 @@ try {
     ) VALUES (?, ?, ?, ?, ?)
   ");
 
-  foreach ($order_items_clean as $item) {
+foreach ($order_items_clean as $item) {
     $stmt->execute([
       $order_id,
       $item,
@@ -217,7 +217,8 @@ try {
 
   $pdo->commit();
 
-catch (Exception $e) {
+} catch (Exception $e) {
+
   if ($pdo->inTransaction()) {
     $pdo->rollBack();
   }
