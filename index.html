@@ -426,7 +426,6 @@
                 placeholder="Tell us about pickup timing, nut/raisin preference, or anything else."
               ></textarea>
             </div>
-            <p id="orderErrorMessage" class="order-error"></p>
             <button type="submit" class="btn btn-primary submit-btn">
               Submit Order
             </button>
@@ -453,6 +452,17 @@
         <a href="#order" class="btn btn-secondary">Order Now</a>
       </div>
     </footer>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal-overlay">
+      <div class="modal-box">
+        <button id="closeModal" class="modal-close">&times;</button>
+
+        <h3>Order Limit Reached</h3>
+
+        <p id="modalMessage"></p>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

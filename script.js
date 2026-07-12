@@ -97,24 +97,59 @@ if (!isAcceptingOrders) {
     "⚠️ We're currently not taking orders until further notice.";
 }
 
+/*
+|--------------------------------------------------------------------------
+| ERROR MODAL
+|--------------------------------------------------------------------------
+| Display inventory and database errors in a dismissible popup.
+|--------------------------------------------------------------------------
+*/
+
 const params = new URLSearchParams(window.location.search);
 const error = params.get("error");
-const errorMessage = document.getElementById("orderErrorMessage");
 
-// Display error messages based on the error query parameter
-if (errorMessage) {
-  if (error === "loaves") {
-    errorMessage.textContent =
-      "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.";
-  }
+const modal = document.getElementById("errorModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeModal = document.getElementById("closeModal");
 
-  if (error === "bagels") {
-    errorMessage.textContent =
-      "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove bagel items.";
-  }
+let message = "";
 
-  if (error === "database") {
-    errorMessage.textContent =
-      "Something went wrong while saving your order. Please try again.";
-  }
+if (error === "loaves") {
+  message =
+    "Sorry, we have reached the loaf limit for that pickup date. Please select another pickup date or remove loaf items.";
 }
+
+if (error === "bagels") {
+  message =
+    "Sorry, we have reached the bagel limit for that pickup date. Please select another pickup date or remove bagel items.";
+}
+
+if (error === "database") {
+  message =
+    "Something went wrong while processing your order. Please try again.";
+}
+
+if (message) {
+  modalMessage.textContent = message;
+  modal.classList.add("show");
+}
+
+/*
+|--------------------------------------------------------------------------
+| CLOSE MODAL BUTTON
+|--------------------------------------------------------------------------
+*/
+closeModal.addEventListener("click", () => {
+  modal.classList.remove("show");
+});
+
+/*
+|--------------------------------------------------------------------------
+| CLOSE MODAL WHEN CLICKING OUTSIDE
+|--------------------------------------------------------------------------
+*/
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+  }
+});
