@@ -69,7 +69,7 @@ if (!is_array($order_items)) {
   $order_items = [];
 }
 
-$order_items_clean = array_map('clean_input', $order_items);
+$order_items_clean = array_map('trim', $order_items);
 
 if (
   $full_name === '' ||
@@ -151,37 +151,27 @@ $max_loaves = 12;
 $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
-  http_response_code(400);
+  
+  die(
+    "Loaf Limit Hit\n" .
+    "Current Loaves: {$current_loaves}\n" .
+    "Requested Loaves: {$requested_loaves}"
+  );
 
-  echo json_encode([
-    'success' => false,
-    'error' => 'loaves',
-    'message' => 'Loaf limit reached'
-  ]);
-    form.classList.add("form-error");
-    
-    console.error(
-  "Inventory Validation Failed:",
-  result.message
-);
-exit;
+  header('Location: index.html?error=loaves#order');
+  exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
-  http_response_code(400);
+  
+  die(
+    "Bagel Limit Hit\n" .
+    "Current Bagels: {$current_bagels}\n" .
+    "Requested Bagels: {$requested_bagels}"
+  );
 
-  echo json_encode([
-    'success' => false,
-    'error' => 'bagels',
-    'message' => 'Bagel limit reached'
-  ]);
-   form.classList.add("form-error");
-  console.error(
-  "Inventory Validation Failed:",
-  result.message
-);
+  header('Location: index.html?error=bagels#order');
   exit;
-
 }
 
 $order_number = generate_order_number(5);
@@ -238,6 +228,15 @@ foreach ($order_items_clean as $item) {
       $products[$item]['price']
     ]);
   }
+  
+echo "<pre>";
+echo "Requested Loaves: $requested_loaves\n";
+echo "Requested Bagels: $requested_bagels\n";
+echo "Calculated Total: $calculated_total\n";
+print_r($order_items_clean);
+echo "</pre>";
+exit;
+
 
   $pdo->commit();
 

@@ -100,24 +100,34 @@ if (!isAcceptingOrders) {
 const params = new URLSearchParams(window.location.search);
 const error = params.get("error");
 const errorMessage = document.getElementById("orderErrorMessage");
+const form = document.getElementById("orderForm");
 
-// Display error messages based on the error query parameter
 if (errorMessage) {
-
   if (error === "loaves") {
     errorMessage.textContent =
       "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.";
     errorMessage.classList.add("show");
+    form.classList.add("form-error");
+    console.error(
+      "Loaf inventory limit reached for selected pickup date."
+    );
   }
   if (error === "bagels") {
     errorMessage.textContent =
-      "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove loaf items.";
+      "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove bagel items.";
     errorMessage.classList.add("show");
+    form.classList.add("form-error");
+    console.error(
+      "Bagel inventory limit reached for selected pickup date."
+    );
   }
   if (error === "database") {
     errorMessage.textContent =
       "Something went wrong while saving your order. Please try again.";
-
     errorMessage.classList.add("show");
+    form.classList.add("form-error");
+    console.error(
+      "Database error occurred while saving order."
+    );
   }
 }
