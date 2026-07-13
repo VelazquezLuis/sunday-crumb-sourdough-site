@@ -2,7 +2,7 @@
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header('Location: index.html#orderline9');
+  header('Location: index.html?error=didnotpost#order');
   exit;
 }
 
@@ -75,12 +75,12 @@ if (
   $pickup_time === '' ||
   empty($order_items_clean)
 ) {
-  header('Location: index.html#orderline75');
+  header('Location: index.html?error=didnotpost#order');
   exit;
 }
 
 if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
-  header('Location: index.html#orderline87');
+  header('Location: index.html?error=invalidemail#order');
   exit;
 }
 
@@ -147,13 +147,13 @@ $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
   
-  header('Location: index.html?error=loaves');
+  header('Location: index.html?error=loaves#order');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
   
-  header('Location: index.html?error=bagels');
+  header('Location: index.html?error=bagels#order');
   exit;
 }
 
@@ -220,7 +220,8 @@ $pdo->commit();
     $pdo->rollBack();
   }
 
-  die('<pre>' . $e->getMessage() . '</pre>');
+  header('Location: index.html?error=database#order');
+  exit;
 }
 
 $subject = "New Order #{$order_number} - Sunday Crumb Sourdough Co";

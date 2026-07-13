@@ -103,6 +103,25 @@ const errorMessage = document.getElementById("orderErrorMessage");
 
 // Display error messages based on the error query parameter
 if (errorMessage) {
+  if (error === "didnotpost") {
+    errorMessage.textContent =
+      "Please complete all required fields before submitting your order.";
+
+    errorMessage.classList.add("show");
+    form.classList.add("form-error");
+
+    console.error("Order form submission was missing required information.");
+  }
+
+  if (error === "invalidemail") {
+    errorMessage.textContent =
+      "Please enter a valid email address before submitting your order.";
+
+    errorMessage.classList.add("show");
+    form.classList.add("form-error");
+
+    console.error("Invalid email address submitted.");
+  }
   if (error === "loaves") {
     errorMessage.textContent =
       "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.";
