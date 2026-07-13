@@ -147,13 +147,13 @@ $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
   
-  header('Location: index.html?error=loaves#order');
+  header('Location: index.html?error=loaves');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
   
-  header('Location: index.html?error=bagels#order');
+  header('Location: index.html?error=bagels');
   exit;
 }
 
