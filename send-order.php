@@ -159,8 +159,6 @@ if (($current_bagels + $requested_bagels) > $max_bagels) {
   die('Maximum bagels limit reached for the selected pickup date. Please choose another date or reduce the number of bagels.');
   exit;
 }
-  exit;
-}
 
 $order_number = generate_order_number(5);
 $formatted_date = date("l, F j, Y", $pickup_timestamp);
