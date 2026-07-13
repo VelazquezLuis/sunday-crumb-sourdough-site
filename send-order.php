@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header('Location: index.html#order');
+  header('Location: index.html#orderline9');
   exit;
 }
 
@@ -80,12 +80,12 @@ if (
   $pickup_time === '' ||
   empty($order_items_clean)
 ) {
-  header('Location: index.html#order');
+  header('Location: index.html#orderline75');
   exit;
 }
 
 if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
-  header('Location: index.html#order');
+  header('Location: index.html#orderline87');
   exit;
 }
 
