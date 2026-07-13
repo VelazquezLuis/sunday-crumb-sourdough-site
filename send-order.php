@@ -95,7 +95,7 @@ $calculated_total = 0;
 
 foreach ($order_items_clean as $item) {
   if (!isset($products[$item])) {
-    header('Location: index.html#order');
+    die('Invalid product selected');
     exit;
   }
 
@@ -113,7 +113,7 @@ foreach ($order_items_clean as $item) {
 $pickup_timestamp = strtotime($pickup_date);
 
 if ($pickup_timestamp === false) {
-  header('Location: index.html#order');
+  die('choose a date');
   exit;
 }
 
@@ -121,14 +121,14 @@ $today = strtotime(date('Y-m-d'));
 $max_pickup_date = strtotime('+60 days', $today);
 
 if ($pickup_timestamp < $today || $pickup_timestamp > $max_pickup_date) {
-  header('Location: index.html#order');
+  die('Date outside allowed range');
   exit;
 }
 
 $day_of_week = date('w', $pickup_timestamp);
 
 if ($day_of_week !== '0' && $day_of_week !== '6') {
-  header('Location: index.html#order');
+  die('Day not a weekend day');
   exit;
 }
 
@@ -151,12 +151,14 @@ $max_loaves = 12;
 $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
-  header('Location: index.html?error=loaves#order');
+  die('Maximum loaves limit reached for the selected pickup date. Please choose another date or reduce the number of loaves.');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
-  header('Location: index.html?error=bagels#order');
+  die('Maximum bagels limit reached for the selected pickup date. Please choose another date or reduce the number of bagels.');
+  exit;
+}
   exit;
 }
 
