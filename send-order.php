@@ -35,7 +35,7 @@ $products = [
     'type' => 'loaf',
     'price' => 15.00,
   ],
-  'Whole Wheat Sourdough with Nuts & Raisins (optional) ($14)' => [
+  'Whole Wheat Sourdough with Nuts and Raisins (optional) ($14)' => [
     'type' => 'loaf',
     'price' => 14.00,
   ],
