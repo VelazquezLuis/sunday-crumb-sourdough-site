@@ -151,13 +151,37 @@ $max_loaves = 12;
 $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
-  header('Location: index.html?error=loaves#order');
-  exit;
+  http_response_code(400);
+
+  echo json_encode([
+    'success' => false,
+    'error' => 'loaves',
+    'message' => 'Loaf limit reached'
+  ]);
+    form.classList.add("form-error");
+    
+    console.error(
+  "Inventory Validation Failed:",
+  result.message
+);
+exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
-  header('Location: index.html?error=loaves#order');
+  http_response_code(400);
+
+  echo json_encode([
+    'success' => false,
+    'error' => 'bagels',
+    'message' => 'Bagel limit reached'
+  ]);
+   form.classList.add("form-error");
+  console.error(
+  "Inventory Validation Failed:",
+  result.message
+);
   exit;
+
 }
 
 $order_number = generate_order_number(5);
