@@ -152,24 +152,12 @@ $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
   
-  die(
-    "Loaf Limit Hit\n" .
-    "Current Loaves: {$current_loaves}\n" .
-    "Requested Loaves: {$requested_loaves}"
-  );
-
   header('Location: index.html?error=loaves#order');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
   
-  die(
-    "Bagel Limit Hit\n" .
-    "Current Bagels: {$current_bagels}\n" .
-    "Requested Bagels: {$requested_bagels}"
-  );
-
   header('Location: index.html?error=bagels#order');
   exit;
 }
