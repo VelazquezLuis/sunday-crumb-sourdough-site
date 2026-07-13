@@ -1,9 +1,4 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -110,6 +105,14 @@ foreach ($order_items_clean as $item) {
   $calculated_total += $products[$item]['price'];
 }
 
+echo "<pre>";
+echo "Requested Loaves: $requested_loaves\n";
+echo "Requested Bagels: $requested_bagels\n";
+echo "Calculated Total: $calculated_total\n";
+print_r($order_items_clean);
+echo "</pre>";
+exit;
+
 $pickup_timestamp = strtotime($pickup_date);
 
 if ($pickup_timestamp === false) {
@@ -208,25 +211,16 @@ try {
   ");
 
 foreach ($order_items_clean as $item) {
-    $stmt->execute([
-      $order_id,
-      $item,
-      $products[$item]['type'],
-      1,
-      $products[$item]['price']
-    ]);
-  }
-  
-echo "<pre>";
-echo "Requested Loaves: $requested_loaves\n";
-echo "Requested Bagels: $requested_bagels\n";
-echo "Calculated Total: $calculated_total\n";
-print_r($order_items_clean);
-echo "</pre>";
-exit;
+  $stmt->execute([
+    $order_id,
+    $item,
+    $products[$item]['type'],
+    1,
+    $products[$item]['price']
+  ]);
+}
 
-
-  $pdo->commit();
+$pdo->commit();
 
 } catch (Exception $e) {
 
