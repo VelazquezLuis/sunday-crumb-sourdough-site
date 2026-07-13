@@ -105,14 +105,6 @@ foreach ($order_items_clean as $item) {
   $calculated_total += $products[$item]['price'];
 }
 
-echo "<pre>";
-echo "Requested Loaves: $requested_loaves\n";
-echo "Requested Bagels: $requested_bagels\n";
-echo "Calculated Total: $calculated_total\n";
-print_r($order_items_clean);
-echo "</pre>";
-exit;
-
 $pickup_timestamp = strtotime($pickup_date);
 
 if ($pickup_timestamp === false) {
