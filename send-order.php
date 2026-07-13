@@ -151,12 +151,12 @@ $max_loaves = 12;
 $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
-  die('Maximum loaves limit reached for the selected pickup date. Please choose another date or reduce the number of loaves.');
+  header('Location: index.html?error=loaves#order');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
-  die('Maximum bagels limit reached for the selected pickup date. Please choose another date or reduce the number of bagels.');
+  header('Location: index.html?error=loaves#order');
   exit;
 }
 
