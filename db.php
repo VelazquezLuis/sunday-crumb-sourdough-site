@@ -1,8 +1,13 @@
 <?php
-$host = 'localhost';
-$dbname = 'u577510376_Eventos';
-$username = 'u577510376_Jocelyn';
-$password = 'Chilango$14';
+
+require_once '../config.php';
+
+$pdo = new PDO(
+    "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+    DB_USER,
+    DB_PASS
+);
+
 
 try {
   $pdo = new PDO(
