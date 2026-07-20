@@ -100,7 +100,7 @@ const errorMessageTop = document.getElementById("orderErrorMessageTop");
 const errorMessageBottom = document.getElementById("orderErrorMessage");
 
 function showOrderError(message, consoleMessage) {
-  [errorMessageTop, errorMessageBottom].forEach((element) => {
+  [errorMessageBottom, errorMessageTop].forEach((element) => {
     if (!element) return;
 
     element.textContent = message;
@@ -109,44 +109,48 @@ function showOrderError(message, consoleMessage) {
 
   form.classList.add("form-error");
 
+  errorMessageTop?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+
   console.error(consoleMessage);
 }
 
 // Display error messages based on the error query parameter
 if (errorMessageTop || errorMessageBottom) {
-
   if (error === "didnotpost") {
     showOrderError(
       "Please complete all required fields before submitting your order.",
-      "Order form submission was missing required information."
+      "Order form submission was missing required information.",
     );
   }
 
   if (error === "invalidemail") {
     showOrderError(
       "Please enter a valid email address before submitting your order.",
-      "Invalid email address submitted."
+      "Invalid email address submitted.",
     );
   }
 
   if (error === "loaves") {
     showOrderError(
       "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.",
-      "Loaf inventory limit reached for selected pickup date."
+      "Loaf inventory limit reached for selected pickup date.",
     );
   }
 
   if (error === "bagels") {
     showOrderError(
       "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove bagel items.",
-      "Bagel inventory limit reached for selected pickup date."
+      "Bagel inventory limit reached for selected pickup date.",
     );
   }
 
   if (error === "database") {
     showOrderError(
       "Something went wrong while saving your order. Please try again.",
-      "Database error occurred while saving the order."
+      "Database error occurred while saving the order.",
     );
   }
 }
