@@ -1,6 +1,5 @@
-
 const orderCheckboxes = Array.from(
-  document.querySelectorAll('input[name="order_items[]"]')
+  document.querySelectorAll('input[name="order_items[]"]'),
 );
 
 const summaryEl = document.getElementById("orderSummary");
@@ -37,7 +36,7 @@ function updateOrderSummary() {
 }
 
 orderCheckboxes.forEach((box) =>
-  box.addEventListener("change", updateOrderSummary)
+  box.addEventListener("change", updateOrderSummary),
 );
 
 updateOrderSummary();
@@ -56,12 +55,11 @@ flatpickr("#pickupDate", {
   ],
 });
 
-
 form.addEventListener("submit", function (e) {
   const checkedItems = orderCheckboxes.filter((box) => box.checked);
 
   const selectedPickupTime = document.querySelector(
-    'input[name="pickup_time"]:checked'
+    'input[name="pickup_time"]:checked',
   );
 
   if (!checkedItems.length) {
@@ -83,7 +81,6 @@ form.addEventListener("submit", function (e) {
   }
 });
 
-
 const isAcceptingOrders = true;
 
 if (!isAcceptingOrders) {
@@ -99,67 +96,57 @@ if (!isAcceptingOrders) {
 
 const params = new URLSearchParams(window.location.search);
 const error = params.get("error");
-const errorMessage = document.getElementById("orderErrorMessage");
+const errorMessageTop = document.getElementById("orderErrorMessageTop");
+const errorMessageBottom = document.getElementById("orderErrorMessage");
+
+function showOrderError(message, consoleMessage) {
+  [errorMessageTop, errorMessageBottom].forEach((element) => {
+    if (!element) return;
+
+    element.textContent = message;
+    element.classList.add("show");
+  });
+
+  form.classList.add("form-error");
+
+  console.error(consoleMessage);
+}
 
 // Display error messages based on the error query parameter
-if (errorMessage) {
+if (errorMessageTop || errorMessageBottom) {
+
   if (error === "didnotpost") {
-    errorMessage.textContent =
-      "Please complete all required fields before submitting your order.";
-
-    errorMessage.classList.add("show");
-    form.classList.add("form-error");
-
-    console.error("Order form submission was missing required information.");
+    showOrderError(
+      "Please complete all required fields before submitting your order.",
+      "Order form submission was missing required information."
+    );
   }
 
   if (error === "invalidemail") {
-    errorMessage.textContent =
-      "Please enter a valid email address before submitting your order.";
-
-    errorMessage.classList.add("show");
-    form.classList.add("form-error");
-
-    console.error("Invalid email address submitted.");
+    showOrderError(
+      "Please enter a valid email address before submitting your order.",
+      "Invalid email address submitted."
+    );
   }
+
   if (error === "loaves") {
-    errorMessage.textContent =
-      "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.";
-
-    errorMessage.classList.add("show");
-    form.classList.add("form-error");
-
-    form.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-    console.error("Loaf inventory limit reached for selected pickup date.");
+    showOrderError(
+      "Sorry, we have reached the loaf limit for that pickup date. Please choose another pickup date or remove loaf items.",
+      "Loaf inventory limit reached for selected pickup date."
+    );
   }
 
   if (error === "bagels") {
-    errorMessage.textContent =
-      "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove bagel items.";
-
-    errorMessage.classList.add("show");
-    form.classList.add("form-error");
-    
-    form.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-
-    console.error("Bagel inventory limit reached for selected pickup date.");
+    showOrderError(
+      "Sorry, we have reached the bagel limit for that pickup date. Please choose another pickup date or remove bagel items.",
+      "Bagel inventory limit reached for selected pickup date."
+    );
   }
 
   if (error === "database") {
-    errorMessage.textContent =
-      "Something went wrong while saving your order. Please try again.";
-
-    errorMessage.classList.add("show");
-    form.classList.add("form-error");
-
-    console.error("Database error occurred while saving the order.");
+    showOrderError(
+      "Something went wrong while saving your order. Please try again.",
+      "Database error occurred while saving the order."
+    );
   }
 }
