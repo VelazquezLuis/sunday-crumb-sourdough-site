@@ -99,6 +99,10 @@ const error = params.get("error");
 const errorMessageTop = document.getElementById("orderErrorMessageTop");
 const errorMessageBottom = document.getElementById("orderErrorMessage");
 
+console.log("Top:", errorMessageTop);
+console.log("Bottom:", errorMessageBottom);
+
+
 function showOrderError(message, consoleMessage) {
   [errorMessageBottom, errorMessageTop].forEach((element) => {
     if (!element) return;
