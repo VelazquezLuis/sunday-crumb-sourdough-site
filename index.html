@@ -219,6 +219,7 @@
             action="send-order.php"
             method="POST"
           >
+          <p id="orderErrorMessageTop" class="order-error"></p>
             <input
               type="hidden"
               name="order_total"
@@ -230,8 +231,7 @@
               name="order_items_summary"
               id="orderItemsSummaryInput"
               value=""
-            />
-            <p id="orderErrorMessageTop" class="order-error"></p>
+            />          
             <div class="form-group full">
               <label for="fullName"
                 >Full Name (First & Last name) <span>*</span></label
