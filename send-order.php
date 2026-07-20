@@ -90,7 +90,7 @@ $calculated_total = 0;
 
 foreach ($order_items_clean as $item) {
   if (!isset($products[$item])) {
-    die('Invalid product selected');
+     header('Location: index.html?error=invalidproduct#order');
     exit;
   }
 

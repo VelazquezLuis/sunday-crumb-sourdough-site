@@ -129,6 +129,11 @@ if (errorMessage) {
     errorMessage.classList.add("show");
     form.classList.add("form-error");
 
+    form.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
     console.error("Loaf inventory limit reached for selected pickup date.");
   }
 
@@ -138,6 +143,12 @@ if (errorMessage) {
 
     errorMessage.classList.add("show");
     form.classList.add("form-error");
+    
+    form.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
 
     console.error("Bagel inventory limit reached for selected pickup date.");
   }
