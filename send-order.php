@@ -108,7 +108,7 @@ foreach ($order_items_clean as $item) {
 $pickup_timestamp = strtotime($pickup_date);
 
 if ($pickup_timestamp === false) {
-  die('choose a date');
+  header('Location: index.html?error=invaliddate#order');
   exit;
 }
 
@@ -116,14 +116,14 @@ $today = strtotime(date('Y-m-d'));
 $max_pickup_date = strtotime('+60 days', $today);
 
 if ($pickup_timestamp < $today || $pickup_timestamp > $max_pickup_date) {
-  die('Date outside allowed range');
+  header('Location: index.html?error=invaliddate#order');
   exit;
 }
 
 $day_of_week = date('w', $pickup_timestamp);
 
 if ($day_of_week !== '0' && $day_of_week !== '6') {
-  die('Day not a weekend day');
+  header('Location: index.html?error=invaliddate#order');
   exit;
 }
 

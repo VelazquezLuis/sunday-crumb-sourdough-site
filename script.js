@@ -132,11 +132,18 @@ if (errorMessageTop || errorMessageBottom) {
       "Invalid email address submitted.",
     );
   }
-  
+
   if (error === "invalidproduct") {
   showOrderError(
     "One or more selected products were invalid. Please try again.",
     "Invalid product submitted."
+  );
+}
+
+if (error === "invaliddate") {
+  showOrderError(
+    "Please select a valid weekend pickup date.",
+    "Invalid pickup date."
   );
 }
 
