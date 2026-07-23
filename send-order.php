@@ -159,6 +159,28 @@ if ($day_of_week !== '0' && $day_of_week !== '6') {
   exit;
 }
 
+date_default_timezone_set('America/Los_Angeles');
+
+$now = time();
+
+$current_day = date('w', $now); // Thursday = 4
+$current_hour = (int) date('G', $now);
+
+$pickup_week_start = strtotime('monday this week', $pickup_timestamp);
+$current_week_start = strtotime('monday this week', $now);
+
+$is_same_weekend =
+  ($pickup_week_start === $current_week_start);
+
+$is_after_cutoff =
+  ($current_day > 4) ||
+  ($current_day == 4 && $current_hour >= 20);
+
+if ($is_same_weekend && $is_after_cutoff) {
+  header('Location: index.html?error=cutoff#order');
+  exit;
+}
+
 $stmt = $pdo->prepare("
   SELECT 
     COALESCE(SUM(CASE WHEN oi.item_type = 'loaf' THEN oi.quantity ELSE 0 END), 0) AS total_loaves,
@@ -288,6 +310,39 @@ $admin_headers[] = 'Reply-To: ' . $email_address;
 $admin_headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
 $mail_sent = @mail($to, $subject, $body, implode("\r\n", $admin_headers));
+$googleSheetData = [
+  'order_number' => $order_number,
+  'full_name' => $full_name,
+  'phone_number' => $phone_number,
+  'email_address' => $email_address,
+  'pickup_date' => $pickup_date,
+  'pickup_time' => $pickup_time,
+  'items' => implode(', ', $order_lines),
+  'total' => $order_total,
+  'payment_method' => $payment_method,
+  'special_requests' => $special_requests,
+];
+
+$sheetWebhook =
+  'https://script.google.com/macros/s/AKfycbwQ9ZSP6gbFKDeOX-c9w_61BR2J4bd100ViuBAY-sgX4ign0fJ89RMVmDf_RTemJRTVjA/exec';
+
+$ch = curl_init($sheetWebhook);
+
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt(
+  $ch,
+  CURLOPT_POSTFIELDS,
+  json_encode($googleSheetData)
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Content-Type: application/json'
+]);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+curl_exec($ch);
+curl_close($ch);
 
 $customer_subject = "Order Confirmation #{$order_number} - Sunday Crumb Sourdough Co";
 
