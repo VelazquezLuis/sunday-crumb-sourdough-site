@@ -48,12 +48,13 @@
             style="font-weight: 700; color: var(--brown)"
           ></p>
           <p style="line-height: 1.75; font-size: 1.05rem">
-            Thank you for contacting Sunday Crumb Sourdough Co. A confirmation
-            A confirmation email has been sent with your order details. Please save your order number for reference.
+            Thank you for ordering from Sunday Crumb Sourdough Co. A confirmation
+            email has been sent with your order details. Please save your order
+            number for reference.
           </p>
 
           <div class="thankyou-social">
-            <p>Follow our latest post</p>
+            <p>Follow our latest posts</p>
 
             <a
               href="https://www.instagram.com/sundaycrumbsourdoughco"
@@ -87,17 +88,23 @@
 
           <p>Small-batch artisan sourdough from Inland Empire, California.</p>
         </div>
-        <a href="#order" class="btn btn-secondary">Order Now</a>
+        <a href="index.html#order" class="btn btn-secondary">Order Now</a>
       </div>
     </footer>
 
     <script>
       const params = new URLSearchParams(window.location.search);
       const orderNumber = params.get("order");
+      const status = params.get("status");
 
       if (orderNumber) {
-        document.getElementById("orderNumberMessage").textContent =
-          `Your order number is #${orderNumber}`;
+        let message = `Your order number is #${orderNumber}`;
+
+        if (status === "queued") {
+          message += ". Your order was saved, but the confirmation email may be delayed.";
+        }
+
+        document.getElementById("orderNumberMessage").textContent = message;
       }
     </script>
   </body>

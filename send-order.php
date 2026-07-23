@@ -22,27 +22,27 @@ function generate_order_number($length = 5) {
 }
 
 $products = [
-  'Classic Sourdough Loaf ($12)' => [
+  'Classic Sourdough Loaf' => [
     'type' => 'loaf',
     'price' => 12.00,
   ],
-  'Jalapeño Cheddar Sourdough Loaf ($15)' => [
+  'Jalapeño Cheddar Sourdough Loaf' => [
     'type' => 'loaf',
     'price' => 15.00,
   ],
-  'Whole Wheat Sourdough with Nuts and Raisins (optional) ($14)' => [
+  'Whole Wheat Sourdough with Nuts & Raisins (optional)' => [
     'type' => 'loaf',
     'price' => 14.00,
   ],
-  '6 Pack of Plain Sourdough Bagels ($16)' => [
+  '6 Pack of Plain Sourdough Bagels' => [
     'type' => 'bagel',
     'price' => 16.00,
   ],
-  '6 Pack of Jalapeño Cheddar Sourdough Bagels ($18)' => [
+  '6 Pack of Jalapeño Cheddar Sourdough Bagels' => [
     'type' => 'bagel',
     'price' => 18.00,
   ],
-  '6 Pack of Blueberry Sourdough Bagels ($18)' => [
+  '6 Pack of Blueberry Sourdough Bagels' => [
     'type' => 'bagel',
     'price' => 18.00,
   ],
@@ -57,14 +57,12 @@ $payment_method = clean_input($_POST['payment_method'] ?? '');
 $special_requests = clean_input($_POST['special_requests'] ?? '');
 $pickup_date = clean_input($_POST['pickup_date'] ?? '');
 $pickup_time = clean_input($_POST['pickup_time'] ?? '');
+$cart_items_json = $_POST['cart_items'] ?? '';
+$cart_items = json_decode($cart_items_json, true);
 
-$order_items = $_POST['order_items'] ?? [];
-
-if (!is_array($order_items)) {
-  $order_items = [];
+if (!is_array($cart_items)) {
+  $cart_items = [];
 }
-
-$order_items_clean = array_map('trim', $order_items);
 
 if (
   $full_name === '' ||
@@ -73,7 +71,7 @@ if (
   $payment_method === '' ||
   $pickup_date === '' ||
   $pickup_time === '' ||
-  empty($order_items_clean)
+  empty($cart_items)
 ) {
   header('Location: index.html?error=didnotpost#order');
   exit;
@@ -87,22 +85,56 @@ if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
 $requested_loaves = 0;
 $requested_bagels = 0;
 $calculated_total = 0;
+$order_items_clean = [];
+$order_lines = [];
 
-foreach ($order_items_clean as $item) {
-  if (!isset($products[$item])) {
-     header('Location: index.html?error=invalidproduct#order');
+foreach ($cart_items as $item_name => $item_data) {
+  $clean_item_name = clean_input($item_name);
+
+  if (!isset($products[$clean_item_name])) {
+    header('Location: index.html?error=invalidproduct#order');
     exit;
   }
 
-  if ($products[$item]['type'] === 'loaf') {
-    $requested_loaves++;
+  $quantity = (int)($item_data['qty'] ?? 0);
+
+  if ($quantity < 1) {
+    continue;
   }
 
-  if ($products[$item]['type'] === 'bagel') {
-    $requested_bagels++;
+  if ($quantity > 99) {
+    header('Location: index.html?error=invalidproduct#order');
+    exit;
   }
 
-  $calculated_total += $products[$item]['price'];
+  $product_type = $products[$clean_item_name]['type'];
+  $product_price = $products[$clean_item_name]['price'];
+  $line_total = $product_price * $quantity;
+
+  if ($product_type === 'loaf') {
+    $requested_loaves += $quantity;
+  }
+
+  if ($product_type === 'bagel') {
+    $requested_bagels += $quantity;
+  }
+
+  $calculated_total += $line_total;
+
+  $order_items_clean[] = [
+    'name' => $clean_item_name,
+    'type' => $product_type,
+    'quantity' => $quantity,
+    'price' => $product_price,
+    'line_total' => $line_total,
+  ];
+
+  $order_lines[] = $clean_item_name . ' x' . $quantity . ' - $' . number_format($line_total, 2);
+}
+
+if (empty($order_items_clean)) {
+  header('Location: index.html?error=didnotpost#order');
+  exit;
 }
 
 $pickup_timestamp = strtotime($pickup_date);
@@ -146,13 +178,11 @@ $max_loaves = 12;
 $max_bagels = 20;
 
 if (($current_loaves + $requested_loaves) > $max_loaves) {
-  
   header('Location: index.html?error=loaves#order');
   exit;
 }
 
 if (($current_bagels + $requested_bagels) > $max_bagels) {
-  
   header('Location: index.html?error=bagels#order');
   exit;
 }
@@ -202,17 +232,17 @@ try {
     ) VALUES (?, ?, ?, ?, ?)
   ");
 
-foreach ($order_items_clean as $item) {
-  $stmt->execute([
-    $order_id,
-    $item,
-    $products[$item]['type'],
-    1,
-    $products[$item]['price']
-  ]);
-}
+  foreach ($order_items_clean as $item) {
+    $stmt->execute([
+      $order_id,
+      $item['name'],
+      $item['type'],
+      $item['quantity'],
+      $item['price']
+    ]);
+  }
 
-$pdo->commit();
+  $pdo->commit();
 
 } catch (Exception $e) {
 
@@ -223,6 +253,8 @@ $pdo->commit();
   header('Location: index.html?error=database#order');
   exit;
 }
+
+$ordered_items_text = '- ' . implode("\n- ", $order_lines);
 
 $subject = "New Order #{$order_number} - Sunday Crumb Sourdough Co";
 
@@ -237,7 +269,7 @@ $body .= "Email Address: {$email_address}\n\n";
 
 $body .= "Order Details\n";
 $body .= "-------------\n";
-$body .= "Ordered Items:\n- " . implode("\n- ", $order_items_clean) . "\n\n";
+$body .= "Ordered Items:\n{$ordered_items_text}\n\n";
 $body .= "Order Total: {$order_total}\n";
 $body .= "Payment Method: {$payment_method}\n\n";
 
@@ -271,7 +303,7 @@ Order Summary
 ----------------------------------
 
 Items:
-- " . implode("\n- ", $order_items_clean) . "
+{$ordered_items_text}
 
 Total: {$order_total}
 
@@ -312,4 +344,3 @@ if ($mail_sent) {
 }
 
 exit;
-?>
