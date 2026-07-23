@@ -25,7 +25,11 @@ function renderCart() {
     row.classList.add("cart-row");
 
     const itemName = document.createElement("span");
-    itemName.textContent = name;
+
+    itemName.innerHTML = `
+  <strong>${name}</strong><br>
+  <small>$${item.price.toFixed(2)} each</small>
+`;
 
     const controls = document.createElement("div");
     controls.classList.add("cart-controls");
