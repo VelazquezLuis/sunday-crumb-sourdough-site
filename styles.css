@@ -634,8 +634,20 @@ textarea:focus {
   }
 }
 
-.footer-social a,
+
 .thankyou-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fef5cc;
+  transition: 0.2s ease;
+}
+
+.footer-social a
+{
   display: flex;
   align-items: center;
   justify-content: flex-start;
