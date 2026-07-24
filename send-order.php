@@ -211,6 +211,7 @@ if (($current_bagels + $requested_bagels) > $max_bagels) {
 
 $order_number = generate_order_number(5);
 $formatted_date = date("l, F j, Y", $pickup_timestamp);
+$sheet_pickup_date = date("m/d/Y", $pickup_timestamp);
 $order_total = '$' . number_format($calculated_total, 2);
 
 try {
@@ -315,7 +316,7 @@ $googleSheetData = [
   'full_name' => $full_name,
   'phone_number' => $phone_number,
   'email_address' => $email_address,
-  'pickup_date' => $pickup_date,
+  'pickup_date' => $sheet_pickup_date,
   'pickup_time' => $pickup_time,
   'items' => '• ' . implode("\n• ", $order_lines),
   'total' => $order_total,
