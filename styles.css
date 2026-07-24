@@ -462,7 +462,6 @@ a {
   color: var(--ink);
 }
 
-
 .order-layout {
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;

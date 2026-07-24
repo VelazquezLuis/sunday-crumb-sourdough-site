@@ -329,6 +329,7 @@ $sheetWebhook =
 $ch = curl_init($sheetWebhook);
 
 curl_setopt($ch, CURLOPT_POST, true);
+
 curl_setopt(
   $ch,
   CURLOPT_POSTFIELDS,
@@ -341,8 +342,12 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-curl_exec($ch);
+/* Follow Google's redirect */
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
 $response = curl_exec($ch);
+
+curl_close($ch);
 
 echo "<pre>";
 echo $response;

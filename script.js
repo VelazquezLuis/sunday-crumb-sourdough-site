@@ -201,13 +201,13 @@ if (errorMessageTop || errorMessageBottom) {
       "Invalid pickup date.",
     );
   }
-  
+
   if (error === "cutoff") {
-  showOrderError(
-    "Orders for this weekend closed Thursday at 8:00 PM PT. Please choose a later pickup date.",
-    "Weekend order cutoff reached."
-  );
-}
+    showOrderError(
+      "Orders for this weekend closed Thursday at 8:00 PM PT. Please choose a later pickup date.",
+      "Weekend order cutoff reached.",
+    );
+  }
 
   if (error === "loaves") {
     showOrderError(
