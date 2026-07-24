@@ -60,7 +60,7 @@ function renderCart() {
 
   const summaryText = buildOrderSummaryText();
 
-  totalEl.textContent = `$${total}`;
+  totalEl.textContent = `$${total.toFixed(2)}`;
   totalInput.value = total;
   summaryInput.value = summaryText;
   cartItemsInput.value = JSON.stringify(cart);

@@ -348,6 +348,10 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 $response = curl_exec($ch);
 
+if ($response === false) {
+  error_log(curl_error($ch));
+}
+
 curl_close($ch);
 
 $customer_subject = "Order Confirmation #{$order_number} - Sunday Crumb Sourdough Co";
