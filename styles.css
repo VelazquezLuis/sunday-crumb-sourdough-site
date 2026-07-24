@@ -57,7 +57,7 @@ a {
 }
 .topbar {
   position: sticky;
-  top: 1px;
+  top: 2px;
   z-index: 20;
   backdrop-filter: blur(10px);
   background: rgba(254, 245, 204, 0.82);

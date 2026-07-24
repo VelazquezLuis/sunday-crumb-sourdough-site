@@ -342,6 +342,13 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 curl_exec($ch);
+$response = curl_exec($ch);
+
+echo "<pre>";
+echo $response;
+echo "</pre>";
+
+exit;
 curl_close($ch);
 
 $customer_subject = "Order Confirmation #{$order_number} - Sunday Crumb Sourdough Co";
