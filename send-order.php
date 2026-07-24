@@ -349,13 +349,6 @@ $response = curl_exec($ch);
 
 curl_close($ch);
 
-echo "<pre>";
-echo $response;
-echo "</pre>";
-
-exit;
-curl_close($ch);
-
 $customer_subject = "Order Confirmation #{$order_number} - Sunday Crumb Sourdough Co";
 
 $customer_body = "
