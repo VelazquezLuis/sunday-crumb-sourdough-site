@@ -177,7 +177,7 @@ $is_after_cutoff =
   ($current_day == 4 && $current_hour >= 20);
 
 if ($is_same_weekend && $is_after_cutoff) {
-  header('Location: index.html?error=cutoff#order');
+  header('Location: index.html?error=cutoffdate#order');
   exit;
 }
 
