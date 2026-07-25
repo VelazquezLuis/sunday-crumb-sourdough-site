@@ -22,15 +22,15 @@ function generate_order_number($length = 5) {
 }
 
 $products = [
-  'Classic Sourdough Loaf' => [
+  'Rustic Classic Sourdough Loaf' => [
     'type' => 'loaf',
     'price' => 12.00,
   ],
-  'Jalapeño Cheddar Sourdough Loaf' => [
+  'Rustic Jalapeño Cheddar Sourdough Loaf' => [
     'type' => 'loaf',
     'price' => 15.00,
   ],
-  'Whole Wheat Sourdough with Nuts and Raisins (optional)' => [
+  'Rustic Seeded Whole Wheat with Walnuts Sourdough Loaf' => [
     'type' => 'loaf',
     'price' => 14.00,
   ],
