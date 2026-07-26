@@ -150,6 +150,12 @@ a {
   box-shadow: 0 0 0 3px rgba(121, 80, 43, 0.18);
 }
 
+.add-to-cart-btn:active {
+  transform: scale(0.96);
+  background: #4a301b;
+  box-shadow: 0 4px 12px rgba(121, 80, 43, 0.2);
+}
+
 .cart-row {
   display: flex;
   align-items: center;
