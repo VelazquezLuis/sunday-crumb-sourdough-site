@@ -87,19 +87,6 @@ if (!preg_match('/^[0-9\-\(\)\s\+]+$/', $phone_number)) {
   exit;
 }
 
-if (error === "invalidemail") {
-  showOrderError(
-    "Please enter a valid email address before submitting your order.",
-    "Invalid email address submitted.",
-  );
-}
-if (error === "invalidphone") {
-  showOrderError(
-    "Please enter a valid phone number before submitting your order.",
-    "Invalid phone number submitted.",
-  );
-}
-
 $requested_loaves = 0;
 $requested_bagels = 0;
 $calculated_total = 0;
