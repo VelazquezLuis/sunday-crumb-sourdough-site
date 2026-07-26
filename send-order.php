@@ -159,28 +159,6 @@ if ($day_of_week !== '0' && $day_of_week !== '6') {
   exit;
 }
 
-date_default_timezone_set('America/Los_Angeles');
-
-$now = time();
-
-$current_day = date('w', $now); // Thursday = 4
-$current_hour = (int) date('G', $now);
-
-$pickup_week_start = strtotime('monday this week', $pickup_timestamp);
-$current_week_start = strtotime('monday this week', $now);
-
-$is_same_weekend =
-  ($pickup_week_start === $current_week_start);
-
-$is_after_cutoff =
-  ($current_day > 4) ||
-  ($current_day == 4 && $current_hour >= 20);
-
-if ($is_same_weekend && $is_after_cutoff) {
-  header('Location: index.html?error=cutoff#order');
-  exit;
-}
-
 $stmt = $pdo->prepare("
   SELECT 
     COALESCE(SUM(CASE WHEN oi.item_type = 'loaf' THEN oi.quantity ELSE 0 END), 0) AS total_loaves,

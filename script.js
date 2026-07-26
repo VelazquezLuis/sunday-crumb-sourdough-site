@@ -107,10 +107,61 @@ flatpickr("#pickupDate", {
 
   disable: [
     function (date) {
-      return date.getDay() !== 0 && date.getDay() !== 6;
+      const day = date.getDay();
+
+      // Only allow Saturday and Sunday
+      if (day !== 0 && day !== 6) {
+        return true;
+      }
+
+      // Use Pacific Time
+      const nowPT = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        }),
+      );
+
+      const isAfterCutoff =
+        (nowPT.getDay() === 5 &&
+          (nowPT.getHours() > 19 ||
+            (nowPT.getHours() === 19 && nowPT.getMinutes() >= 0))) ||
+        nowPT.getDay() === 6 || // Saturday
+        nowPT.getDay() === 0; // Sunday
+
+      if (!isAfterCutoff) {
+        return false;
+      }
+
+      const today = new Date(
+        nowPT.getFullYear(),
+        nowPT.getMonth(),
+        nowPT.getDate(),
+      );
+
+      const thisSaturday = new Date(today);
+
+      thisSaturday.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7));
+
+      const thisSunday = new Date(thisSaturday);
+
+      thisSunday.setDate(thisSaturday.getDate() + 1);
+
+      return (
+        date.toDateString() === thisSaturday.toDateString() ||
+        date.toDateString() === thisSunday.toDateString()
+      );
     },
   ],
 });
+
+if (isAfterCutoff) {
+  const banner = document.getElementById("announcementBanner");
+
+  if (banner) {
+    banner.textContent =
+      "Orders for this weekend have closed. Please select a future weekend pickup date.";
+  }
+}
 
 form.addEventListener("submit", function (e) {
   const cartItems = Object.keys(cart);
@@ -174,14 +225,6 @@ function showOrderError(message, consoleMessage) {
 
 // Display error messages based on the error query parameter
 if (errorMessageTop || errorMessageBottom) {
-  
-    if (error === "cutoff") {
-    showOrderError(
-      "Orders for this weekend closed Thursday at 8:00 PM PT. Please choose a later pickup date.",
-      "Weekend order cutoff reached.",
-    );
-  }
-  
   if (error === "didnotpost") {
     showOrderError(
       "Please complete all required fields before submitting your order.",
