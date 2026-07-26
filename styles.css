@@ -595,6 +595,17 @@ textarea:focus {
   background: rgba(254, 245, 204, 0.1);
 }
 
+.pickup-date-banner {
+  background: #f8f4ec;
+  border: 1px solid #d6c7a1;
+  color: #5c4b2c;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4
+}
+
 @media (max-width: 930px) {
   .hero-grid,
   .intro-grid,

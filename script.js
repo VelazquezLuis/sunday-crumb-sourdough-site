@@ -154,15 +154,6 @@ flatpickr("#pickupDate", {
   ],
 });
 
-if (isAfterCutoff) {
-  const banner = document.getElementById("announcementBanner");
-
-  if (banner) {
-    banner.textContent =
-      "Orders for this weekend have closed. Please select a future weekend pickup date.";
-  }
-}
-
 form.addEventListener("submit", function (e) {
   const cartItems = Object.keys(cart);
 
