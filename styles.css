@@ -683,6 +683,7 @@ textarea:focus {
 .thankyou-social {
   margin: 1.5rem 0 1rem;
   padding: 1rem;
+  justify-content: center;
   border-radius: 18px;
   background: rgba(121, 80, 43, 0.08);
 }
