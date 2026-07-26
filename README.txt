@@ -3,23 +3,23 @@ Sunday Crumb Sourdough Co - Website Package
 
 Files included:
 - index.html
-- page-styles.css
-- pages-script.js
-- page-send-order.php
+- styles.css
+- script.js
+- send-order.php
 - thank-you.html
 - logo.jpg
 - picture.png
 
 How the order form works:
 - The website is a static HTML/CSS/JS front end.
-- The form submits to page-send-order.php.
-- page-send-order.php uses PHP's mail() function to send the order details to:
+- The form submits to send-order.php.
+- send-order.php uses PHP's mail() function to send the order details to:
   javiervelazquez113@yahoo.com
 
 Hosting on Hostinger:
 1. Upload all files into your public_html folder.
 2. Make sure PHP is enabled on the hosting plan.
-3. Keep index.html and page-send-order.php in the same folder.
+3. Keep index.html and send-order.php in the same folder.
 4. Test by submitting an order.
 
 Important note about email delivery:

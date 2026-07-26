@@ -211,6 +211,11 @@ a {
   line-height: 1.6;
 }
 
+.flatpickr-day.today.flatpickr-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .order-error {
   display: none;
   background: #fff3f0;

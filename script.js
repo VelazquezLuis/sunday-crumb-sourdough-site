@@ -102,7 +102,7 @@ flatpickr("#pickupDate", {
   dateFormat: "Y-m-d",
   altInput: true,
   altFormat: "l, F j, Y",
-  minDate: "today",
+  minDate: new Date().fp_incr(1),
   maxDate: new Date().fp_incr(60),
 
   disable: [
