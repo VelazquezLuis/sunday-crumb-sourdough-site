@@ -77,10 +77,26 @@ if (
   exit;
 }
 
+if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+  header('Location: index.html?error=invalidemail#order');
+  exit;
+}
+
+if (!preg_match('/^[0-9\-\(\)\s\+]+$/', $phone_number)) {
+  header('Location: index.html?error=invalidphone#order');
+  exit;
+}
+
 if (error === "invalidemail") {
   showOrderError(
     "Please enter a valid email address before submitting your order.",
     "Invalid email address submitted.",
+  );
+}
+if (error === "invalidphone") {
+  showOrderError(
+    "Please enter a valid phone number before submitting your order.",
+    "Invalid phone number submitted.",
   );
 }
 
