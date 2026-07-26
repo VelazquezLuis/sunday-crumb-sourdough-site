@@ -174,6 +174,14 @@ function showOrderError(message, consoleMessage) {
 
 // Display error messages based on the error query parameter
 if (errorMessageTop || errorMessageBottom) {
+  
+    if (error === "cutoff") {
+    showOrderError(
+      "Orders for this weekend closed Thursday at 8:00 PM PT. Please choose a later pickup date.",
+      "Weekend order cutoff reached.",
+    );
+  }
+  
   if (error === "didnotpost") {
     showOrderError(
       "Please complete all required fields before submitting your order.",
@@ -199,13 +207,6 @@ if (errorMessageTop || errorMessageBottom) {
     showOrderError(
       "Please select a valid weekend pickup date.",
       "Invalid pickup date.",
-    );
-  }
-
-  if (error === "cutoffdate") {
-    showOrderError(
-      "Orders for this weekend closed Thursday at 8:00 PM PT. Please choose a later pickup date.",
-      "Weekend order cutoff reached.",
     );
   }
 
