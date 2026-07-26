@@ -81,6 +81,13 @@ if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
   header('Location: index.html?error=invalidemail#order');
   exit;
 }
+if (!preg_match('/^[0-9\-\(\)\s\+]+$/', $phone_number)) {
+2
+header('Location: index.html?error=invalidphone#order');
+3
+exit;
+4
+}
 
 $requested_loaves = 0;
 $requested_bagels = 0;

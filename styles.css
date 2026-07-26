@@ -603,7 +603,7 @@ textarea:focus {
   border-radius: 8px;
   margin-bottom: 1rem;
   font-size: 0.95rem;
-  line-height: 1.4
+  line-height: 1.4;
 }
 
 @media (max-width: 930px) {

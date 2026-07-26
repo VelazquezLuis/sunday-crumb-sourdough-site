@@ -230,6 +230,13 @@ if (errorMessageTop || errorMessageBottom) {
     );
   }
 
+  if (error === "invalidphone") {
+  showOrderError(
+    "Please enter a valid phone number before submitting your order.",
+    "Invalid phone number submitted.",
+  );
+}
+
   if (error === "invalidproduct") {
     showOrderError(
       "One or more selected products were invalid. Please try again.",
