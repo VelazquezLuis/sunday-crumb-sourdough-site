@@ -20,7 +20,7 @@ function generate_order_number($length = 7) {
   return $order_number;
 }
 
-$to = 'javiervelazquez113@yahoo.com';
+$to = 'sundaycrumbsourdough@gmail.com';
 
 $full_name = clean_input($_POST['full_name'] ?? '');
 $phone_number = clean_input($_POST['phone_number'] ?? '');
