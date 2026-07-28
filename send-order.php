@@ -56,7 +56,6 @@ $email_address = clean_input($_POST['email_address'] ?? '');
 $payment_method = clean_input($_POST['payment_method'] ?? '');
 $special_requests = clean_input($_POST['special_requests'] ?? '');
 $pickup_date = clean_input($_POST['pickup_date'] ?? '');
-$pickup_time = clean_input($_POST['pickup_time'] ?? '');
 $cart_items_json = $_POST['cart_items'] ?? '';
 $cart_items = json_decode($cart_items_json, true);
 
@@ -70,7 +69,6 @@ if (
   $email_address === '' ||
   $payment_method === '' ||
   $pickup_date === '' ||
-  $pickup_time === '' ||
   empty($cart_items)
 ) {
   header('Location: index.html?error=didnotpost#order');
@@ -221,7 +219,7 @@ try {
     $email_address,
     $payment_method,
     $pickup_date,
-    $pickup_time,
+    'Not Specified',
     $calculated_total,
     $special_requests
   ]);
@@ -282,7 +280,6 @@ $body .= "Payment Method: {$payment_method}\n\n";
 $body .= "Pickup Details\n";
 $body .= "--------------\n";
 $body .= "Pickup Date: {$formatted_date}\n";
-$body .= "Pickup Time: {$pickup_time}\n\n";
 
 $body .= "Special Requests\n";
 $body .= "----------------\n";
@@ -300,7 +297,7 @@ $googleSheetData = [
   'phone_number' => $phone_number,
   'email_address' => $email_address,
   'pickup_date' => $sheet_pickup_date,
-  'pickup_time' => $pickup_time,
+  'pickup_time' => 'Not Specified',
   'items' => '• ' . implode("\n• ", $order_lines),
   'total' => $order_total,
   'payment_method' => $payment_method,
@@ -360,7 +357,7 @@ Pickup Details
 ----------------------------------
 
 Date: {$formatted_date}
-Time: {$pickup_time}
+
 
 ----------------------------------
 

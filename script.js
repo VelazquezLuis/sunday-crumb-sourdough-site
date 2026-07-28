@@ -157,10 +157,6 @@ flatpickr("#pickupDate", {
 form.addEventListener("submit", function (e) {
   const cartItems = Object.keys(cart);
 
-  const selectedPickupTime = document.querySelector(
-    'input[name="pickup_time"]:checked',
-  );
-
   if (!cartItems.length) {
     e.preventDefault();
     alert("Please add at least one item to your cart.");
@@ -170,12 +166,6 @@ form.addEventListener("submit", function (e) {
   if (!pickupDateInput.value) {
     e.preventDefault();
     alert("Please select a pickup date.");
-    return;
-  }
-
-  if (!selectedPickupTime) {
-    e.preventDefault();
-    alert("Please select a pickup time.");
     return;
   }
 });
