@@ -361,7 +361,7 @@ Date: {$formatted_date}
 
 ----------------------------------
 
-We will have your order ready for pickup at the selected time.
+We will contact you to coordinate a convenient pickup time and location.
 
 Tip: Save this email or screenshot it for easy pickup reference.
 
