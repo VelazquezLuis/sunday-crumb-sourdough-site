@@ -15,14 +15,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://sundaycrumbsourdough.com/images/social-preview.jpg">
     <title>Sunday Crumb Sourdough Co</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=1.1.1" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -40,14 +40,14 @@
     </div> -->
     <header class="topbar">
       <div class="container nav">
-        <a class="brand" href="#home">
-          <img src="logo.jpg" alt="Sunday Crumb Sourdough Co logo" />
+        <a class="brand" href="https://sundaycrumbsourdough.com/">
+          <img src="images/logo.jpg" alt="Sunday Crumb Sourdough Co logo" />
           <span>Sunday Crumb Sourdough Co</span>
         </a>
         <nav>
           <a href="#about">About</a>
           <a href="#menu">Menu</a>
-          <a href="#order">Order</a>
+          <a href="#order">Review Order</a>
         </nav>
       </div>
     </header>
@@ -64,13 +64,13 @@
               sourdough baking in small-batches made with love.🫶🏽
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#order">Place an Order</a>
               <a class="btn btn-secondary" href="#menu">View the Menu</a>
+              <a class="btn btn-primary" href="#order">Review your Order</a>
             </div>
           </div>
           <div class="hero-card">
             <img
-              src="picture.png"
+              src="images/picture.png"
               alt="Sunday Crumb Sourdough Co featured artisan sourdough image"
             />
           </div>
@@ -120,38 +120,114 @@
             <p>All loaves will come unsliced, and bagels will be pre-sliced.</p>
           </div>
           <div class="menu-grid">
-            <article class="menu-item">
-              <h3>Classic Sourdough Loaf</h3>
-              <p>Classic crust, airy crumb, and great for every meal.</p>
+            <article
+              class="menu-item"
+              data-name="Rustic Classic Sourdough Loaf"
+              data-price="12"
+            >
+              <img
+                src="images/classic-sourdough-loaf.jpeg"
+                alt="Rustic Classic Sourdough Loaf"
+                class="menu-image"
+              />
+
+              <h3>Rustic Classic Sourdough Loaf</h3>
               <strong>$12</strong>
+              <p>Classic crust, airy crumb, and great for every meal.</p>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
-            <article class="menu-item">
-              <h3>Jalapeño Cheddar Sourdough Loaf</h3>
-              <p>Bold cheddar flavor with a mild jalapeño kick.</p>
+
+            <article
+              class="menu-item"
+              data-name="Rustic Jalapeño Cheddar Sourdough Loaf"
+              data-price="15"
+            >
+              <img
+                src="images/jalapeno-cheddar-sourdough-loaf-9.jpeg"
+                alt="Rustic Jalapeño Cheddar Sourdough Loaf"
+                class="menu-image"
+              />
+
+              <h3>Rustic Jalapeño Cheddar Sourdough Loaf</h3>
               <strong>$15</strong>
+              <p>Bold cheddar flavor with a mild jalapeño kick.</p>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
-            <article class="menu-item">
-              <h3>Whole Wheat Sourdough with Nuts & Raisins (optional)</h3>
+
+            <article
+              class="menu-item"
+              data-name="Rustic Seeded Whole Wheat with Walnuts Sourdough Loaf"
+              data-price="14"
+            >
+              <img
+                src="images/whole-wheat-sourdough-with-nuts-and-raisins-loaf-alt.jpeg"
+                alt="Rustic Seeded Whole Wheat with Walnuts Sourdough Loaf"
+                class="menu-image"
+              />
+              <h3>Rustic Seeded Whole Wheat with Walnuts Sourdough Loaf</h3>
+              <strong>$14</strong>
               <p>
                 Nutty whole wheat with optional mix-ins for extra texture and
                 sweetness.
               </p>
-              <strong>$14</strong>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
-            <article class="menu-item">
+
+            <article
+              class="menu-item"
+              data-name="6 Pack of Plain Sourdough Bagels"
+              data-price="16"
+            >
+              <img
+                src="images/plain-sourdough-bagels-9.jpeg"
+                alt="Plain Sourdough Bagels"
+                class="menu-image"
+              />
+
               <h3>6 Pack of Plain Sourdough Bagels</h3>
-              <p>Chewy, classic, and pre-sliced for convenience.</p>
               <strong>$16</strong>
+              <p>Chewy, classic, and pre-sliced for convenience.</p>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
-            <article class="menu-item">
+
+            <article
+              class="menu-item"
+              data-name="6 Pack of Jalapeño Cheddar Sourdough Bagels"
+              data-price="18"
+            >
+              <img
+                src="images/jalapeno-cheddar-sourdough-bagels-9.jpeg"
+                alt="Jalapeño Cheddar Sourdough Bagels"
+                class="menu-image"
+              />
+
               <h3>6 Pack of Jalapeño Cheddar Sourdough Bagels</h3>
+              <strong>$18</strong>
               <p>Savory bagels with cheesy jalapeño flavor.</p>
-              <strong>$18</strong>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
-            <article class="menu-item">
+
+            <article
+              class="menu-item"
+              data-name="6 Pack of Blueberry Sourdough Bagels"
+              data-price="18"
+            >
+              <img
+                src="images/blueberry-sourdough-bagels.jpeg"
+                alt="Blueberry Sourdough Bagels"
+                class="menu-image"
+              />
+
               <h3>6 Pack of Blueberry Sourdough Bagels</h3>
-              <p>Lightly sweet bagels with blueberry notes.</p>
               <strong>$18</strong>
+              <p>Lightly sweet bagels with blueberry notes.</p>
+
+              <button type="button" class="add-to-cart-btn">Add to Cart</button>
             </article>
           </div>
         </div>
@@ -169,8 +245,9 @@
             <div class="order-card">
               <h3>Order Summary</h3>
               <div id="orderSummary">
-                <p>No items selected yet.</p>
+                <p class="empty-cart">No items selected yet.</p>
               </div>
+
               <div class="order-total">
                 <span>Total</span>
                 <strong id="orderTotal">$0</strong>
@@ -184,16 +261,23 @@
             action="send-order.php"
             method="POST"
           >
+            <p id="orderErrorMessageTop" class="order-error"></p>
             <input
               type="hidden"
               name="order_total"
               id="orderTotalInput"
-              value="$0"
+              value="0"
             />
             <input
               type="hidden"
               name="order_items_summary"
               id="orderItemsSummaryInput"
+              value=""
+            />
+            <input
+              type="hidden"
+              name="cart_items"
+              id="cartItemsInput"
               value=""
             />
 
@@ -219,6 +303,8 @@
                   name="phone_number"
                   required
                   placeholder="(909) 555-1234"
+                  pattern="[0-9\-\(\)\s\+]+"
+                  title="Please enter a valid phone number"
                 />
               </div>
               <div class="form-group">
@@ -232,72 +318,6 @@
                 />
               </div>
             </div>
-
-            <fieldset class="fieldset full">
-              <legend>What would you like to order? <span>*</span></legend>
-              <p class="field-note">
-                All loaves will come unsliced, bagels will be pre-sliced.
-              </p>
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="Classic Sourdough Loaf ($12)"
-                  data-price="12"
-                />
-                <span>Classic Sourdough Loaf ($12)</span></label
-              >
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="Jalapeño Cheddar Sourdough Loaf ($15)"
-                  data-price="15"
-                />
-                <span>Jalapeño Cheddar Sourdough Loaf ($15)</span></label
-              >
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="Whole Wheat Sourdough with Nuts & Raisins (optional) ($14)"
-                  data-price="14"
-                />
-                <span
-                  >Whole Wheat Sourdough with Nuts & Raisins (optional)
-                  ($14)</span
-                ></label
-              >
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="6 Pack of Plain Sourdough Bagels ($16)"
-                  data-price="16"
-                />
-                <span>6 Pack of Plain Sourdough Bagels ($16)</span></label
-              >
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="6 Pack of Jalapeño Cheddar Sourdough Bagels ($18)"
-                  data-price="18"
-                />
-                <span
-                  >6 Pack of Jalapeño Cheddar Sourdough Bagels ($18)</span
-                ></label
-              >
-              <label class="check-item"
-                ><input
-                  type="checkbox"
-                  name="order_items[]"
-                  value="6 Pack of Blueberry Sourdough Bagels ($18)"
-                  data-price="18"
-                />
-                <span>6 Pack of Blueberry Sourdough Bagels ($18)</span></label
-              >
-            </fieldset>
 
             <fieldset class="fieldset full">
               <legend>How would you like to pay? <span>*</span></legend>
@@ -332,7 +352,10 @@
                 >
               </div>
             </fieldset>
-
+            <div id="pickupDateBanner" class="pickup-date-banner">
+              📅 Select a weekend pickup date. Orders for the current weekend
+              close Thursday at 8:00 PM PT.
+            </div>
             <div class="form-group full">
               <label for="pickupDate"
                 >Pickup Date (Weekends Only) <span>*</span></label
@@ -346,40 +369,6 @@
               />
             </div>
 
-            <fieldset class="fieldset full">
-              <legend>Pickup Time <span>*</span></legend>
-
-              <label class="radio-item">
-                <input
-                  type="radio"
-                  name="pickup_time"
-                  value="Morning (8am–11am)"
-                  required
-                />
-                <span>Morning (8am–11am)</span>
-              </label>
-
-              <label class="radio-item">
-                <input
-                  type="radio"
-                  name="pickup_time"
-                  value="Afternoon (12pm–3pm)"
-                  required
-                />
-                <span>Afternoon (12pm–3pm)</span>
-              </label>
-
-              <label class="radio-item">
-                <input
-                  type="radio"
-                  name="pickup_time"
-                  value="Evening (4pm–6pm)"
-                  required
-                />
-                <span>Evening (4pm–6pm)</span>
-              </label>
-            </fieldset>
-
             <div class="form-group full">
               <label for="specialRequests"
                 >Special Requests - Anything you'd like us to know?</label
@@ -391,15 +380,71 @@
                 placeholder="Tell us about pickup timing, nut/raisin preference, or anything else."
               ></textarea>
             </div>
-
+            <p id="orderErrorMessage" class="order-error"></p>
             <button type="submit" class="btn btn-primary submit-btn">
               Submit Order
             </button>
           </form>
         </div>
       </section>
-    </main>
+      <section id="faq" class="section section-light">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Frequently Asked Questions</h2>
+          </div>
 
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <button class="faq-question">Where can I pick up my order?</button>
+              <div class="faq-answer">
+                <p>
+                  Located in Ontario and serving neighboring cities. Clients
+                  will be contacted via text 2 days prior to the pickup date to
+                  discuss and confirm the pickup location.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                What's the best way to store sourdough bread?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Leave the loaf on the counter with the cut side down and
+                  covered with a tea towel for up to 3 days.
+                </p>
+
+                <p>
+                  Because this bread contains no preservatives, it has a shorter
+                  shelf life than commercial bread.
+                </p>
+
+                <p>
+                  Sourdough freezes very well. I recommend freezing half the
+                  loaf, wrapped in plastic, then thawing the day before use.
+                </p>
+
+                <p>
+                  Sliced sourdough can also be stored in a plastic bag in the
+                  refrigerator for up to a week.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">How do I refresh my loaf?</button>
+              <div class="faq-answer">
+                <p>
+                  Lightly spray the loaf with water (recommended but not
+                  required) and bake at 425°F for 10-15 minutes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <footer class="footer">
       <div class="container footer-content">
         <div class="footer-social">
@@ -412,13 +457,11 @@
             <i class="fab fa-instagram"></i>
             <span>@SundayCrumbSourdoughCo</span>
           </a>
-
           <p>Small-batch artisan sourdough from Inland Empire, California.</p>
         </div>
-        <a href="#order" class="btn btn-secondary">Order Now</a>
+        <a href="#menu" class="btn btn-secondary">View Menu</a>
       </div>
     </footer>
-
-    <script src="script.js"></script>
+    <script src="script.js?v=1.1.3"></script>
   </body>
 </html>
