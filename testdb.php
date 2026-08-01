@@ -2,4 +2,4 @@
 
 require_once 'db.php';
 
-echo "Connected successfully";
+echo "Database connected successfully.";
