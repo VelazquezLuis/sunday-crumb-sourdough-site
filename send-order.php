@@ -161,16 +161,30 @@ if ($day_of_week !== '0' && $day_of_week !== '6') {
   exit;
 }
 
+$day_of_week = date('w', $pickup_timestamp);
+
+if ($day_of_week == 6) {
+    // Saturday selected
+    $weekend_start = date('Y-m-d', $pickup_timestamp);
+    $weekend_end = date('Y-m-d', strtotime('+1 day', $pickup_timestamp));
+} else {
+    // Sunday selected
+    $weekend_start = date('Y-m-d', strtotime('-1 day', $pickup_timestamp));
+    $weekend_end = date('Y-m-d', $pickup_timestamp);
+}
 $stmt = $pdo->prepare("
-  SELECT 
+  SELECT
     COALESCE(SUM(CASE WHEN oi.item_type = 'loaf' THEN oi.quantity ELSE 0 END), 0) AS total_loaves,
     COALESCE(SUM(CASE WHEN oi.item_type = 'bagel' THEN oi.quantity ELSE 0 END), 0) AS total_bagels
   FROM order_items oi
   INNER JOIN orders o ON oi.order_id = o.id
-  WHERE o.pickup_date = ?
+  WHERE o.pickup_date BETWEEN ? AND ?
 ");
 
-$stmt->execute([$pickup_date]);
+$stmt->execute([
+    $weekend_start,
+    $weekend_end
+]);
 $current_totals = $stmt->fetch();
 
 $current_loaves = (int) $current_totals['total_loaves'];
