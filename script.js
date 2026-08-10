@@ -122,9 +122,10 @@ flatpickr("#pickupDate", {
       );
 
       const isAfterCutoff =
-        (nowPT.getDay() === 5 &&
-          (nowPT.getHours() > 19 ||
-            (nowPT.getHours() === 19 && nowPT.getMinutes() >= 0))) ||
+        (nowPT.getDay() === 4 &&
+          (nowPT.getHours() > 20 ||
+            (nowPT.getHours() === 20 && nowPT.getMinutes() >= 0))) ||
+        nowPT.getDay() === 5 || // Friday
         nowPT.getDay() === 6 || // Saturday
         nowPT.getDay() === 0; // Sunday
 
@@ -229,11 +230,11 @@ if (errorMessageTop || errorMessageBottom) {
   }
 
   if (error === "invalidphone") {
-  showOrderError(
-    "Please enter a valid phone number before submitting your order.",
-    "Invalid phone number submitted.",
-  );
-}
+    showOrderError(
+      "Please enter a valid phone number before submitting your order.",
+      "Invalid phone number submitted.",
+    );
+  }
 
   if (error === "invalidproduct") {
     showOrderError(
