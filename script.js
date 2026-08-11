@@ -169,6 +169,13 @@ form.addEventListener("submit", function (e) {
     alert("Please select a pickup date.");
     return;
   }
+
+  const submitButton = form.querySelector(".submit-btn");
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting Order...";
+  }
 });
 
 document.querySelectorAll(".faq-question").forEach((question) => {
