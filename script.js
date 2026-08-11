@@ -174,7 +174,7 @@ form.addEventListener("submit", function (e) {
 
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.textContent = "Submitting Order...";
+    submitButton.textContent = "Processing Order...";
   }
 });
 
