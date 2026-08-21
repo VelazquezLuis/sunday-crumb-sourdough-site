@@ -10,10 +10,8 @@ const cart = {};
 
 // Weekends unavailable for ordering
 const BLOCKED_DATES = [
-    '2026-10-24', // October 17-18 weekend
+    '2026-10-24', // October 24-25 weekend
     '2026-10-25',
-    '2026-10-03', // October 17-18 weekend
-    '2026-10-04',
 ];
 
 function buildOrderSummaryText() {
