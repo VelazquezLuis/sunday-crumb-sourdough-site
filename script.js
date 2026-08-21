@@ -8,6 +8,12 @@ const pickupDateInput = document.getElementById("pickupDate");
 
 const cart = {};
 
+// Weekends unavailable for ordering
+const BLOCKED_DATES = [
+    '2026-10-24', // October 24-25 weekend
+    '2026-10-25',
+];
+
 function buildOrderSummaryText() {
   return Object.entries(cart)
     .map(([name, item]) => `${name} x${item.qty}`)
@@ -111,6 +117,17 @@ flatpickr("#pickupDate", {
 
       // Only allow Saturday and Sunday
       if (day !== 0 && day !== 6) {
+        return true;
+      }
+      // Block specific weekends
+      const dateString =
+        date.getFullYear() +
+        "-" +
+        String(date.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(date.getDate()).padStart(2, "0");
+          
+      if (BLOCKED_DATES.includes(dateString)) {
         return true;
       }
 
