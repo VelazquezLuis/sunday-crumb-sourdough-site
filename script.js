@@ -10,6 +10,8 @@ const cart = {};
 
 // Weekends unavailable for ordering
 const BLOCKED_DATES = [
+    '2026-09-19', // September 19-20 weekend
+    '2026-09-20',
     '2026-10-24', // October 24-25 weekend
     '2026-10-25',
 ];
