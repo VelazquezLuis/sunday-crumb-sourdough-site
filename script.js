@@ -14,6 +14,8 @@ const BLOCKED_DATES = [
     '2026-09-20',
     '2026-10-24', // October 24-25 weekend
     '2026-10-25',
+    '2026-10-10',  // October 10-11 weekend
+    '2026-10-11',
 ];
 
 function buildOrderSummaryText() {
